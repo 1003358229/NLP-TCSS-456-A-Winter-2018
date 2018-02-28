@@ -25,6 +25,7 @@ for name in files:
     try:
         with open(name,'r',encoding="utf-8-sig") as file:
             documents.append(file.read().lower())
+            print(name)
 ##            break
             pass
     except IOError as exc:
@@ -141,10 +142,10 @@ index = similarities.MatrixSimilarity(lsi[corpus])
 f = open("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/21.txt",encoding="utf-8-sig")
 query = f.read()
 query_bow = dictionary.doc2bow(query.lower().split())
-pprint(query_bow)
+##pprint(query_bow)
 print('14----------------------------------------------------------------------------------------------------------------')
 query_lsi = lsi[query_bow]
-pprint(query_lsi)
+##pprint(query_lsi)
 print('15----------------------------------------------------------------------------------------------------------------')
 sims = index[query_lsi]
 ##pprint(list(enumerate(sims)))
