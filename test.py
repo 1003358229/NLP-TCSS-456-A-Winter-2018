@@ -138,7 +138,7 @@ print('12-----------------------------------------------------------------------
 
 '''find similar'''
 index = similarities.MatrixSimilarity(lsi[corpus])
-f = open("D:/HOME/TCSS456/21.txt",encoding="utf-8-sig")
+f = open("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/21.txt",encoding="utf-8-sig")
 query = f.read()
 query_bow = dictionary.doc2bow(query.lower().split())
 pprint(query_bow)
