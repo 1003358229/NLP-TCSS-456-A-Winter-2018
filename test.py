@@ -19,11 +19,11 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 '''open files'''
 documents = []
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/*.txt'
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2017/*.txt'
 files = glob.glob(path)
 for name in files:
     try:
-        with open(name,'r',encoding="utf-8-sig") as file:
+        with open(name,'r',encoding="utf-8") as file:
             documents.append(file.read().lower())
             print(name)
 ##            break
@@ -139,7 +139,7 @@ print('12-----------------------------------------------------------------------
 
 '''find similar'''
 index = similarities.MatrixSimilarity(lsi[corpus])
-f = open("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/21.txt",encoding="utf-8-sig")
+f = open("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2017/21. I'm The One.txt",encoding="utf-8")
 query = f.read()
 query_bow = dictionary.doc2bow(query.lower().split())
 ##pprint(query_bow)
