@@ -34,6 +34,84 @@ for name in files:
     except IOError as exc:
         if exc.errno != errno.EISDIR:
             raise
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2012/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2007/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2002/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1997/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1992/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
 ##pprint(documents)
 print('1----------------------------------------------------------------------------------------------------------------')
 print('number of documents =',len(documents),'=', count)
@@ -84,6 +162,9 @@ print('6------------------------------------------------------------------------
 '''token count and token to id'''
 '''should save this'''
 dictionary = corpora.Dictionary(stem_documents)
+file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic','w')
+dictionary.save('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic')
+file.close()
 ##print(dictionary)
 print('7----------------------------------------------------------------------------------------------------------------')
 ##print(dictionary.token2id)
@@ -94,55 +175,11 @@ print('8------------------------------------------------------------------------
 '''coinvert to token count and token id'''
 '''should save this'''
 corpus = [dictionary.doc2bow(document) for document in stem_documents]
+file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/corpus.cop','w')
+corpora.MmCorpus.serialize('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/corpus.cop', corpus)
+file.close()
 ##print(corpus)
 print('9----------------------------------------------------------------------------------------------------------------')
 
 
 
-'''TF-IDF'''
-tfidf = models.TfidfModel(corpus)
-corpus_tfidf = tfidf[corpus]
-##for doc in corpus_tfidf:
-##    print(doc)
-print('10----------------------------------------------------------------------------------------------------------------')
-
-
-
-'''LSI topics'''
-lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=5)
-##lsi.print_topics(2)
-print('11----------------------------------------------------------------------------------------------------------------')
-
-
-
-'''LSI larger means more related'''
-corpus_lsi = lsi[corpus_tfidf]
-##for doc in corpus_lsi:
-##    print(doc)
-print('12----------------------------------------------------------------------------------------------------------------')
-
-
-
-'''LDA topics does not seem as good'''
-##lda = models.LdaModel(corpus_tfidf, id2word=dictionary, num_topics=2)
-##lda.print_topics(2)
-##print('13----------------------------------------------------------------------------------------------------------------')
-
-
-
-'''find similar'''
-index = similarities.MatrixSimilarity(lsi[corpus])
-f = open("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2017/21. I'm The One.txt",encoding="utf-8")
-query = f.read()
-query_bow = dictionary.doc2bow(query.lower().split())
-##pprint(query_bow)
-print('14----------------------------------------------------------------------------------------------------------------')
-query_lsi = lsi[query_bow]
-##pprint(query_lsi)
-print('15----------------------------------------------------------------------------------------------------------------')
-sims = index[query_lsi]
-##pprint(list(enumerate(sims)))
-print('16----------------------------------------------------------------------------------------------------------------')
-sort_sims = sorted(enumerate(sims), key=lambda item: -item[1])
-pprint(sort_sims)
-print('17----------------------------------------------------------------------------------------------------------------')
