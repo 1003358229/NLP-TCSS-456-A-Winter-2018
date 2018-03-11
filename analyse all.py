@@ -113,6 +113,21 @@ for name in files:
             raise
 
 '''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1987/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+'''open files'''
 path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/*.txt'
 files = glob.glob(path)
 for name in files:
@@ -127,6 +142,35 @@ for name in files:
         if exc.errno != errno.EISDIR:
             raise
 
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1977/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
+
+'''open files'''
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1972/*.txt'
+files = glob.glob(path)
+for name in files:
+    try:
+        with open(name,'r',encoding="utf-8") as file:
+            documents.append(file.read().lower())
+            txt_name = name.split('\\')
+            print(count,'=',txt_name[-1])
+            count = count + 1
+            pass
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
 ##pprint(documents)
 print('1----------------------------------------------------------------------------------------------------------------')
 print('number of documents =',len(documents),'=', count)
