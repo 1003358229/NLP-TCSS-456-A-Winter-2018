@@ -20,7 +20,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 '''open files'''
 documents = []
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2017/*.txt'
+path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/*.txt'
 files = glob.glob(path)
 count = 0;
 for name in files:
@@ -34,99 +34,6 @@ for name in files:
     except IOError as exc:
         if exc.errno != errno.EISDIR:
             raise
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2012/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2007/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/2002/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1997/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1992/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
-'''open files'''
-path = 'D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/*.txt'
-files = glob.glob(path)
-for name in files:
-    try:
-        with open(name,'r',encoding="utf-8") as file:
-            documents.append(file.read().lower())
-            txt_name = name.split('\\')
-            print(count,'=',txt_name[-1])
-            count = count + 1
-            pass
-    except IOError as exc:
-        if exc.errno != errno.EISDIR:
-            raise
-
 ##pprint(documents)
 print('1----------------------------------------------------------------------------------------------------------------')
 print('number of documents =',len(documents),'=', count)
@@ -177,8 +84,8 @@ print('6------------------------------------------------------------------------
 '''token count and token to id'''
 '''should save this'''
 dictionary = corpora.Dictionary(stem_documents)
-file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic','w')
-dictionary.save('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic')
+file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/tmp/dictionary.dic','w')
+dictionary.save('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/tmp/dictionary.dic')
 file.close()
 ##print(dictionary)
 print('7----------------------------------------------------------------------------------------------------------------')
@@ -190,8 +97,8 @@ print('8------------------------------------------------------------------------
 '''coinvert to token count and token id'''
 '''should save this'''
 corpus = [dictionary.doc2bow(document) for document in stem_documents]
-file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/corpus.cop','w')
-corpora.MmCorpus.serialize('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/corpus.cop', corpus)
+file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/tmp/corpus.cop','w')
+corpora.MmCorpus.serialize('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1982/tmp/corpus.cop', corpus)
 file.close()
 ##print(corpus)
 print('9----------------------------------------------------------------------------------------------------------------')
