@@ -1,0 +1,19 @@
+
+
+
+
+
+##test = []
+tokenize_documents = [[word for word in re.split('[^a-zA-Z]', document.lower())] for document in documents]
+##re.split('(|"|”|/|.|!|´|„|“|*|…|¦|:|]|’|[|;|¡|\'|)|-|‘|?|&|–|,|—|,|\n| ', 
+##tokenize_documents = [[word for word in list(document.lower())] for document in documents]
+##for document in tokenize_documents:
+##    for word in document:
+##        if not word.isalpha():
+##            if not word.isspace():
+##                test.append(word)
+##print(list(set(test)))
+
+
+
+pprint(tokenize_documents)

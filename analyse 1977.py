@@ -41,33 +41,32 @@ print('1.1----------------------------------------------------------------------
 
 
 
+'''load all 813 stop words'''
+file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/stopwords.txt','r',encoding="utf-8")
+stop_words =re.split('\n',file.read().lower())
+##pprint(stop_words)
+print('1.2----------------------------------------------------------------------------------------------------------------')
+
+
+
+
 '''tokenize lines'''
-tokenize_documents = [[word for word in document.lower().split()] for document in documents]
-##print(tokenize_documents)
+tokenize_documents = [[word for word in re.split('[^a-zA-Z\'0-9]', document.lower())] for document in documents]
+##pprint(tokenize_documents)
 print('2----------------------------------------------------------------------------------------------------------------')
 
 
 
 '''filter out stop words'''
-stop_words = set(stopwords.words('english'))
 stop_words_documents = [[word for word in document if word not in stop_words] for document in tokenize_documents]
 ##pprint(stop_words_documents)
 print('3----------------------------------------------------------------------------------------------------------------')
 
 
 
-'''remove punctuations'''
-punctuations = list(string.punctuation)
-punctuations_documents = [[word for word in document if word not in punctuations] for document in stop_words_documents]
-##pprint(punctuations_documents)
-print('4----------------------------------------------------------------------------------------------------------------')
-
-
-
 '''remove empty'''
-empty = []
-empty.append('')
-empty_documents = [document for document in punctuations_documents if document != []]
+empty = ['']
+empty_documents = [[word for word in document if word not in empty] for document in stop_words_documents]
 ##pprint(empty_documents)
 print('5----------------------------------------------------------------------------------------------------------------')
 
@@ -89,7 +88,7 @@ dictionary.save('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1977/tmp/dictionary.
 file.close()
 ##print(dictionary)
 print('7----------------------------------------------------------------------------------------------------------------')
-##print(dictionary.token2id)
+pprint(dictionary.token2id)
 print('8----------------------------------------------------------------------------------------------------------------')
 
 
@@ -100,7 +99,7 @@ corpus = [dictionary.doc2bow(document) for document in stem_documents]
 file = open('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1977/tmp/corpus.cop','w')
 corpora.MmCorpus.serialize('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/1977/tmp/corpus.cop', corpus)
 file.close()
-##print(corpus)
+pprint(corpus)
 print('9----------------------------------------------------------------------------------------------------------------')
 
 
