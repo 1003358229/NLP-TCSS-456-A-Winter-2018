@@ -234,6 +234,27 @@ print('1972---------------------------------------------------------------------
 
 
 
+'''read generated files'''
+if (os.path.exists("D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic")):
+    dictionary = corpora.Dictionary.load('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/dictionary.dic')
+    corpus = corpora.MmCorpus('D:/HOME/TCSS456/NLP-TCSS-456-A-Winter-2018/tmp/corpus.cop')
+    print("Used files generated")
+else:
+    print("Please generate data set")
+
+'''TF-IDF'''
+tfidf = models.TfidfModel(corpus)
+corpus_tfidf = tfidf[corpus]
+print('10----------------------------------------------------------------------------------------------------------------')
+
+'''LSI topics'''
+'''need to be more than 2(3 or more)'''
+lsi = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=1)
+##lsi.print_topics(100)
+print('All Above----------------------------------------------------------------------------------------------------------------')
+
+
+
 
 
 
